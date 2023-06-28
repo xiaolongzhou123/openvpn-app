@@ -60,11 +60,12 @@
 2. 修改 vim run/client.ovpn 第4行 home.zhouxiaolong.top 9526
 
 
-默认用户 
-admin Xxxxx.ai@123 
-二次密钥：HFCGCZSMKFRDASSM 
-
-新添加的用户默认密码都是：Xxxxx.ai@123,普通用户可以登陆网页。自行更改 
+### 用户密码相关
+1. 默认用户: admin 
+2. 默认密码：Xxxxx.ai@123  
+3. 二次密钥：HFCGCZSMKFRDASSM 
+4. 普通用户修改密码，可以登陆网页。自行更改 
+5. 某个用户需要提升为管理员：cd vpnapi下 vim sso.yaml ,第九行， 手动添加用户。 (这里是数组,例如["admin","admin1","admin2"])
 
  
 
@@ -87,6 +88,5 @@ admin Xxxxx.ai@123
 
 容器外执行： 
 docker cp easy-rsa3:/etc/openvpn/easy-rsa . 
-
 
 
