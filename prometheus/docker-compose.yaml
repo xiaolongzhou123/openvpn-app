@@ -1,0 +1,11 @@
+version: "3"
+services:
+  prometheus:
+    image: quay.io/prometheus/prometheus:latest
+    volumes:
+     - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command: "--web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    hostname: prometheus
+    restart: always
+    ports:
+    - "9092:9090"

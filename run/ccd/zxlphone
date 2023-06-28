@@ -1,0 +1,2 @@
+push "dhcp-option DNS 18.18.2.2"
+push "redirect-gateway def1 bypass-dhcp"

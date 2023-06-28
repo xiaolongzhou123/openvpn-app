@@ -1,0 +1,19 @@
+version: '3'
+services:
+  vpnui:
+    container_name: vpnui
+    hostname: vpnui
+    environment:
+     - TZ=Asia/Shanghai
+    image: nginx:1.18.0
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./conf.d:/etc/nginx/conf.d/  
+      - ./dist:/dist  
+      - ./log:/var/log/nginx/
+    restart: always
+    ports:
+      - 9998:80
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      secure_file_priv:

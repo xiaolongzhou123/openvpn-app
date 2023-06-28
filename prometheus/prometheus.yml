@@ -1,0 +1,10 @@
+global:
+  scrape_interval:     15s
+  scrape_timeout:      15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'vpnapi'  # 交换机的名称表示采用Job做区分，然后多个交换机写多个Job对应即可
+    static_configs:
+    - targets: ['vpnapi:29091']  # 交换机的IP地址
+    metrics_path: /metrics

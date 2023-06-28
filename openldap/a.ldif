@@ -1,0 +1,16 @@
+# create_pwd_policy.ldif
+# ou=policies
+
+# cn=default
+dn: cn=zxl,ou=tech,ou=sigin,dc=example,dc=org
+objectClass: pwdPolicy
+objectClass: organizationalRole
+cn: default
+pwdAllowUserChange: TRUE
+pwdAttribute: 2.5.4.35 #userPassword
+pwdMinLength: 6
+pwdCheckQuality: 2
+pwdInHistory: 3
+pwdLockout: TRUE
+pwdLockoutDuration: 10
+pwdMaxFailure: 3

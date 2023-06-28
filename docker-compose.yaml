@@ -1,0 +1,125 @@
+version: '2'
+services:
+  openvpn:
+    container_name: openvpn
+    image: zhouxiaolong1985/openvpn
+    volumes:
+      - ./run:/etc/openvpn
+    environment:
+      TZ: "Asia/Shanghai"
+      APIKEY: "0123456789123456"
+    cap_add:
+      - NET_ADMIN
+    restart: always
+    hostname: openvpn
+    depends_on:
+      - "vpnapi"
+    privileged: true
+    #command: /bin/sh -c "while sleep 1000; do :; done"
+    command: /bin/sh -c "/etc/openvpn/start.sh"
+    ports:
+      - "20005:20005"
+  vpnapi:
+    container_name: vpnapi
+    image: zhouxiaolong1985/vpnapi
+    volumes:
+      - /:/rootfs:ro
+      - ./vpnapi/sso.yaml:/usr/bin/sso.yaml
+    environment:
+      NUX_ROOTFS: "/rootfs"
+      TZ: "Asia/Shanghai"
+    restart: always
+    hostname: vpnapi
+    depends_on:
+      - "vpnmysql"
+      - "vpnopenldap"
+      - "prometheus"
+  vpnui:
+    container_name: vpnui
+    hostname: vpnui
+    environment:
+     - TZ=Asia/Shanghai
+    image: nginx:1.18.0
+    volumes:
+      - ./vpnui/nginx.conf:/etc/nginx/nginx.conf
+      - ./vpnui/conf.d:/etc/nginx/conf.d/
+      - ./vpnui/dist:/dist
+      - ./vpnui/log:/var/log/nginx/
+    restart: always
+    depends_on:
+      - "vpnapi"
+    ports:
+      - 9998:80
+  vpnmysql:
+    image: mysql:5.7
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+    hostname: vpnmysql
+    container_name: vpnmysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      TZ: Asia/Shanghai
+      secure_file_priv:
+  vpnopenldap:
+    image: zhouxiaolong1985/openldap
+    container_name: vpnopenldap
+    environment:
+      LDAP_LOG_LEVEL: "256"
+      LDAP_ORGANISATION: "Example Inc."
+      LDAP_DOMAIN: "example.org"
+      LDAP_BASE_DN: ""
+      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_CONFIG_PASSWORD: "config"
+      LDAP_READONLY_USER: "false"
+      #LDAP_READONLY_USER_USERNAME: "readonly"
+      #LDAP_READONLY_USER_PASSWORD: "readonly"
+      LDAP_RFC2307BIS_SCHEMA: "false"
+      LDAP_BACKEND: "mdb"
+      LDAP_TLS: "true"
+      LDAP_TLS_CRT_FILENAME: "ldap.crt"
+      LDAP_TLS_KEY_FILENAME: "ldap.key"
+      LDAP_TLS_DH_PARAM_FILENAME: "dhparam.pem"
+      LDAP_TLS_CA_CRT_FILENAME: "ca.crt"
+      LDAP_TLS_ENFORCE: "false"
+      LDAP_TLS_CIPHER_SUITE: "SECURE256:-VERS-SSL3.0"
+      LDAP_TLS_VERIFY_CLIENT: "demand"
+      LDAP_REPLICATION: "false"
+      #LDAP_REPLICATION_CONFIG_SYNCPROV: 'binddn="cn=admin,cn=config" bindmethod=simple credentials="$$LDAP_CONFIG_PASSWORD" searchbase="cn=config" type=refreshAndPersist retry="60 +" timeout=1 starttls=critical'
+      #LDAP_REPLICATION_DB_SYNCPROV: 'binddn="cn=admin,$$LDAP_BASE_DN" bindmethod=simple credentials="$$LDAP_ADMIN_PASSWORD" searchbase="$$LDAP_BASE_DN" type=refreshAndPersist interval=00:00:00:10 retry="60 +" timeout=1 starttls=critical'
+      #LDAP_REPLICATION_HOSTS: "#PYTHON2BASH:['ldap://ldap.example.org','ldap://ldap2.example.org']"
+      KEEP_EXISTING_CONFIG: "false"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
+      LDAP_SSL_HELPER_PREFIX: "ldap"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./openldap/data/schema:/etc/ldap/schema
+      - ./openldap/data/ldap:/var/lib/ldap
+      - ./openldap/data/slapd.d:/etc/ldap/slapd.d
+      - ./openldap/data/certs:/container/service/slapd/assets/certs/
+    domainname: "example.org"
+    hostname: "ldap-server"
+    restart: always
+  prometheus:
+    image: quay.io/prometheus/prometheus:latest
+    volumes:
+     - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: "--web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    hostname: prometheus
+    restart: always
+    #    ports:
+    #- "9092:9090"
+  vpnphpldapadmin:
+    image: osixia/phpldapadmin:latest
+    container_name: vpnphpldapadmin
+    hostname: vpnphpldapadmin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "vpnopenldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "9009:80"
+    depends_on:
+      - vpnopenldap

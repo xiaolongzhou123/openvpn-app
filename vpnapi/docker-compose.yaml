@@ -1,0 +1,16 @@
+version: '2'
+services:
+  vpnapi:
+    container_name: vpnapi
+    image: zhouxiaolong1985/sso:v1
+    volumes:
+      - /:/rootfs:ro
+      - ./sso.yaml:/usr/bin/sso.yaml
+    environment:
+      NUX_ROOTFS: "/rootfs"
+      TZ: "Asia/Shanghai"
+    restart: always
+    hostname: vpnapi
+    network_mode: "host"
+    #command: /bin/sh -c "while sleep 1000; do :; done"
+    #command: /bin/sh -c "/etc/vpnapi/start.sh"

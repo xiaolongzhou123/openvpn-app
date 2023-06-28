@@ -1,0 +1,15 @@
+dn: cn=module,cn=config
+cn: module{0}
+objectClass: top
+objectClass: olcModuleList
+olcModuleLoad: ppolicy.la
+olcModulePath: /usr/lib/ldap
+
+dn: olcOverlay={0}ppolicy,olcDatabase={1}hdb,cn=config
+objectClass: olcPPolicyConfig
+objectClass: olcOverlayConfig
+olcOverlay: ppolicy
+olcPPolicyDefault: cn=passwordDefault,ou=policies,dc=ironnet,dc=co
+olcPPolicyForwardUpdates: FALSE
+olcPPolicyHashCleartext: FALSE
+olcPPolicyUseLockout: FALSE

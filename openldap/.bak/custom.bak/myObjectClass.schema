@@ -1,0 +1,99 @@
+
+attributetype (
+    3.2.2.1.1
+    NAME 'myId'
+    DESC '我测试的id'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+
+attributetype (
+    3.2.2.1.2
+    NAME 'myName'
+    DESC '我测试的名称'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+attributetype (
+    3.2.2.1.3
+    NAME 'myTel'
+    DESC '我的座机'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+
+attributetype (
+    3.2.2.1.4
+    NAME 'myEmail'
+    DESC '我的邮箱'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+
+
+attributetype (
+    3.2.2.1.5
+    NAME 'myDep'
+    DESC '所在部门'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+
+attributetype (
+    3.2.2.1.6
+    NAME 'myLeader'
+    DESC '直属上级'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+attributetype (
+    3.2.2.1.7
+    NAME 'myPostion'
+    DESC '职位'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+
+attributetype (
+    3.2.2.1.8
+    NAME 'myReg'
+    DESC '入职时间'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+attributetype (
+    3.2.2.1.9
+    NAME 'myPhone'
+    DESC '我的手机'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    EQUALITY caseIgnoreMatch
+    SUBSTR caseIgnoreSubstringsMatch
+    SINGLE-VALUE )
+
+
+
+objectClass (
+    3.3.2.1.3
+    NAME 'myObjectClass'
+	DESC '我测试的objectClass'
+    SUP inetOrgPerson STRUCTURAL
+    MAY ( myId $ myName
+ $ myTel $ myEmail $ myDep $ myLeader
+ $ myPostion $ myReg $myPhone
+ ))
