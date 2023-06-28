@@ -41,14 +41,6 @@ admin Xxxxx.ai@123
 
  
 
-### docker镜像 
->如果镜像相无法从hub.docker.com上下载，换阿里云即可 
-
-1. zhouxiaolong1985/openvpn替换为registry.cn-hangzhou.aliyuncs.com/xiaolongzhou/ops:openvpn 
-2. zhouxiaolong1985/vpnapi替换为registry.cn-hangzhou.aliyuncs.com/xiaolongzhou/ops:vpnapi 
-
-
-
 
 ### 关于替换easy-rsa相关证书
 docker run --rm --network=host  --privileged=true --cap-add=NET_ADMIN  --name easy-rsa3  --device=/dev/net/tun -it centos:7 bash
