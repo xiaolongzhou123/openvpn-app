@@ -24,7 +24,7 @@ Promethues:
   AllOut: "irate(flow_in_total{instance='vpnapi:29091'}[1m])"
   AllIn: "irate(flow_out_total{instance='vpnapi:29091'}[1m])"
   QueryRange: "http://prometheus:9090/api/v1/query_range"
-  Query: "http://prometheus:9090/api/v1/query"
+  Query: "http://vpnprometheus:9090/api/v1/query"
   Cpu: "vpn_cpu_per"
   Mem: "vpn_mem_per"
   Users: "vpn_users"

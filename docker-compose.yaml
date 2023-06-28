@@ -33,7 +33,7 @@ services:
     depends_on:
       - "vpnmysql"
       - "vpnopenldap"
-      - "prometheus"
+      - "vpnprometheus"
   vpnui:
     container_name: vpnui
     hostname: vpnui
@@ -103,7 +103,7 @@ services:
     domainname: "example.org"
     hostname: "ldap-server"
     restart: always
-  prometheus:
+  vpnprometheus:
     image: quay.io/prometheus/prometheus:latest
     volumes:
      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml

@@ -1,29 +1,29 @@
 ### 介绍 
 1. 使用它的场景 
-   1.1 公司员工。通过它，连接到公司内部,办公访问业务系统 
-   1.2 你在家有nas。有软路由，有一些linux或windows。从外面连接到家 
-   1.3 如果我在新马泰玩儿。我想看、Youku、爱奇艺、腾讯视频 
-   1.4 我在家，想访问公司的电脑，远程管理我的mac或windows办公电脑。完成未完成的工作 
+   - 公司员工。通过它，连接到公司内部,办公访问业务系统 
+   -  你在家有nas。有软路由，有一些linux或windows。从外面连接到家 
+   - 如果我在新马泰玩儿。我想看、Youku、爱奇艺、腾讯视频 
+   - 我在家，想访问公司的电脑，远程管理我的mac或windows办公电脑。完成未完成的工作 
 2. 为什么要用云枢openvpn
-   2.1：安装方便，已经封装成docker镜像。通过docker-compose启动，只需要一个命令,搭建即可完成 
-   2.2：管理方便 ，方便为不同用户创建帐户和创建或撤销证书 
-   2.3：审计方便、只要用户连接，必有日志。 
-   2.4：实时会话，可以踢用户下线。
-   2.5：Qos限速控制 
+   - 安装方便，已经封装成docker镜像。通过docker-compose启动，只需要一个命令,搭建即可完成 
+   - 管理方便 ，方便为不同用户创建帐户和创建或撤销证书 
+   - 审计方便、只要用户连接，必有日志。 
+   - 实时会话，可以踢用户下线。
+   - Qos限速控制 
 3. 怎么安装
-   3.1 拉取镜像 docker-compose pull 
-   3.2 启动  docker-compose up -d
-   3.3 查询服务状态  docker-compose ps
+   - 拉取镜像 docker-compose pull 
+   - 启动  docker-compose up -d
+   - 查询服务状态  docker-compose ps
 4. 怎么使用
-   4.1 确定你有的外网ip 
-   4.2 nat映射 
-   4.3 确定，你要开放的内网网段 
-   4.4 确定。
+   - 确定你有的外网ip 
+   - nat映射 
+   - 确定，你要开放的内网网段 
+   - 确定。
 5. 后续运维相关 
-   5.1  相关组件6个 promethues（9092<=>9090）,mysql（3306）,openldap（389）,phpldapadmin（9009<=>80）,api(9091),ui（9998<=>80） 
-   5.1  备份证书 
-   5.2  备份用户 
-   5.3  创建自己的easy-rsa相关证书 (提升安全性) 
+   -  相关组件6个 promethues（9092<=>9090）,mysql（3306）,openldap（389）,phpldapadmin（9009<=>80）,api(9091),ui（9998<=>80） 
+   -  备份证书 
+   -  备份用户 
+   -  创建自己的easy-rsa相关证书 (提升安全性) 
 
 ###  安装方法 
 
@@ -33,6 +33,8 @@
 4. vim run/client.ovpn  需要外网地址和端口是你做nat，指定的ip和port 
 5. vim run/server.conf  修改你要开放的内网网段 比如： push "route 172.25.1.0 255.255.255.0"
 
+
+浏览器访问: http://yourip:9998
 
 ### 关于运维需要注意的点 
 
@@ -72,10 +74,8 @@ admin Xxxxx.ai@123
 2. yum install -y lzo openssl pam tree 
 3. yum install -y epel-release 
 4. yum install -y openvpn easy-rsa 
-
 5. mkdir /etc/openvpn/easy-rsa && cp -r /usr/share/easy-rsa/3.0.8/\* /etc/openvpn/easy-rsa  
 6. cd /etc/openvpn/easy-rsa 
-
 7. ./easyrsa init-pki 
 8. ./easyrsa build-ca nopass 
 9. ./easyrsa gen-req server nopass 
