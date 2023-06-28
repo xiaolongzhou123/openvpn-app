@@ -68,24 +68,21 @@ admin Xxxxx.ai@123
 
 
 ### 关于替换默认easy-rsa相关证书 
-docker run --rm --network=host  --privileged=true --cap-add=NET_ADMIN  --name easy-rsa3  --device=/dev/net/tun -it centos:7 bash 
+1. docker run --rm --network=host  --privileged=true --cap-add=NET_ADMIN  --name easy-rsa3  --device=/dev/net/tun -it centos:7 bash 
+2. yum install -y lzo openssl pam tree 
+3. yum install -y epel-release 
+4. yum install -y openvpn easy-rsa 
 
-yum install -y lzo openssl pam tree 
-yum install -y epel-release 
-yum install -y openvpn easy-rsa 
+5. mkdir /etc/openvpn/easy-rsa && cp -r /usr/share/easy-rsa/3.0.8/\* /etc/openvpn/easy-rsa  
+6. cd /etc/openvpn/easy-rsa 
 
-
-
-mkdir /etc/openvpn/easy-rsa && cp -r /usr/share/easy-rsa/3.0.8/\* /etc/openvpn/easy-rsa  
-cd /etc/openvpn/easy-rsa 
-
-./easyrsa init-pki 
-./easyrsa build-ca nopass 
-./easyrsa gen-req server nopass 
-./easyrsa sign-req server server 
-./easyrsa gen-dh 
-./easyrsa gen-crl 
-openvpn --genkey --secret  pki/ta.key 
+7. ./easyrsa init-pki 
+8. ./easyrsa build-ca nopass 
+9. ./easyrsa gen-req server nopass 
+10. ./easyrsa sign-req server server 
+11. ./easyrsa gen-dh 
+12. ./easyrsa gen-crl 
+13. openvpn --genkey --secret  pki/ta.key 
 
 
 容器外执行： 
