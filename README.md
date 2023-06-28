@@ -16,10 +16,8 @@
    - 启动  docker-compose up -d
    - 查询服务状态  docker-compose ps
 4. 怎么使用
-   - 确定你有的外网ip 
-   - nat映射 
+   - 确定你有的外网ip,在做nat映射
    - 确定，你要开放的内网网段 
-   - 确定。
 5. 后续运维相关 
    -  相关组件6个 promethues（9092<=>9090）,mysql（3306）,openldap（389）,phpldapadmin（9009<=>80）,api(9091),ui（9998<=>80） 
    -  备份证书 
@@ -42,9 +40,7 @@
 ### openvpn相关的配置(其实不需要动,只动server.conf push route下发路由网段相关) 
 >run目录下 
 
-1. ccd 目录下，可以为用户写策略路由 
-2. log目录，Openvpn下的log日志 
-3. server.conf  只改push "route 比如192.168.1.0 255.255.255.0"
+1. server.conf  只改push "route 比如192.168.1.0 255.255.255.0"
 
 
 ### 端口映射 
