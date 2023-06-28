@@ -5,10 +5,11 @@
    - 如果我在新马泰玩儿。我想看、Youku、爱奇艺、腾讯视频 
    - 我在家，想访问公司的电脑，远程管理我的mac或windows办公电脑。完成未完成的工作 
 2. 为什么要用云枢openvpn
-   - 安装方便，已经封装成docker镜像。通过docker-compose启动，只需要一个命令,搭建即可完成 
-   - 管理方便 ，方便为不同用户创建帐户和创建或撤销证书 
-   - 审计方便、只要用户连接，必有日志。 
-   - 实时会话，可以踢用户下线。
+   - 简易操作，web端管理，集合以下强大功能
+   - 安装方便,已经封装成docker镜像。通过docker-compose启动，只需要一个命令,搭建即可完成 
+   - 管理方便,方便为不同用户创建帐户和创建或撤销证书 
+   - 审计方便,只要用户连接，必有日志。 
+   - 实时会话,可以踢用户下线。
    - Qos限速控制 
 3. 怎么安装
    - 拉取镜像 docker-compose pull 
@@ -88,3 +89,12 @@
 docker cp easy-rsa3:/etc/openvpn/easy-rsa . 
 
 
+
+### 图片介绍 
+![登陆](https://raw.githubusercontent.com/xiaolongzhou123/openvpn-app/main/images/login.png)
+![主页上](https://raw.githubusercontent.com/xiaolongzhou123/openvpn-app/main/images/index1.png)
+![主页下](https://raw.githubusercontent.com/xiaolongzhou123/openvpn-app/main/images/index2.png)
+![用户管理](https://raw.githubusercontent.com/xiaolongzhou123/openvpn-app/main/images/user.png)
+![会话管理](https://raw.githubusercontent.com/xiaolongzhou123/openvpn-app/main/images/sess.png)
+![限速管理](https://raw.githubusercontent.com/xiaolongzhou123/openvpn-app/main/images/limit.png)
+![日志管理](https://raw.githubusercontent.com/xiaolongzhou123/openvpn-app/main/images/log.png)
