@@ -51,8 +51,9 @@
 
 ### 用户密码相关
 1. 默认用户: admin 
-2. 默认密码：Xxxxx.ai@123  
-3. 二次密钥：HFCGCZSMKFRDASSM 
+2. 默认密码：Xxxxx.ai@123 
+3. 二次密钥：HFCGCZSMKFRDASSM ,可以用微信小程序搜索，二次验证码，扫描以下图片 
+   - ![二次密钥](https://raw.githubusercontent.com/xiaolongzhou123/openvpn-app/main/images/admin.png) 
 4. 普通用户修改密码，可以登陆网页。自行更改 
 5. 某个用户需要提升为管理员：cd vpnapi下 vim sso.yaml ,第九行， 手动添加用户。 (这里是数组,例如["admin","admin1","admin2"])
 
