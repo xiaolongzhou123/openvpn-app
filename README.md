@@ -56,6 +56,10 @@
 4. 普通用户修改密码，可以登陆网页。自行更改 
 5. 某个用户需要提升为管理员：cd vpnapi下 vim sso.yaml ,第九行， 手动添加用户。 (这里是数组,例如["admin","admin1","admin2"])
 
+### 客户端工具
+1. windows版本：https://openvpn.net/client/client-connect-vpn-for-windows/
+2. mac版本：https://openvpn.net/client-connect-vpn-for-mac-os/
+3. linux版本：通过各自系统的命令install openvpn即可
  
 ### 关于运维需要注意的点 
 
