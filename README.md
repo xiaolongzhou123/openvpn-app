@@ -30,8 +30,8 @@
 2. cd openvpn 
 3. docker-compose pull
 4. docker-compose up -d 
-5. vim run/client.ovpn  需要外网地址和端口是你做nat，指定的ip和port  第4行 home.zhouxiaolong.top 9526
-6. vim run/server.conf  修改你要开放的内网网段 比如： push "route 18.18.1.0 255.255.255.0"
+5. 通过web界面修改(  需要外网地址和端口是你做nat，指定的ip和port)
+6. 通过web界面修改(  修改你要开放的内网网段 比如： push "route 18.18.1.0 255.255.255.0")
 
 
 浏览器访问: http://yourip:9998
