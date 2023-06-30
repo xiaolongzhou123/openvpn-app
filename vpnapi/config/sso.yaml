@@ -1,5 +1,7 @@
 admin:
     enable: true
+    names:
+        - admin
 aes:
     key: "0123456789123456"
 author: zhouxiaolong 11688459@qq.com
@@ -41,6 +43,7 @@ netsarr:
 pms:
     enable: false
     url: http://localhost:8081/user/name/%s/point/bool/%s
+port: 29091
 promethues:
     allin: irate(flow_out_total{instance='vpnapi:29091'}[1m])
     allout: irate(flow_in_total{instance='vpnapi:29091'}[1m])
