@@ -24,7 +24,7 @@ services:
     image: zhouxiaolong1985/vpnapi
     volumes:
       - /:/rootfs:ro
-      - ./vpnapi/sso.yaml:/usr/bin/sso.yaml
+      - ./vpnapi/config:/usr/bin/config
     environment:
       NUX_ROOTFS: "/rootfs"
       TZ: "Asia/Shanghai"
