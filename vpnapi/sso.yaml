@@ -45,14 +45,14 @@ pms:
     url: http://localhost:8081/user/name/%s/point/bool/%s
 port: 29091
 promethues:
-    allin: irate(flow_out_total{instance='vpnprometheus:29091'}[1m])
-    allout: irate(flow_in_total{instance='vpnprometheus:29091'}[1m])
+    allin: irate(flow_out_total{instance='vpnapi:29091'}[1m])
+    allout: irate(flow_in_total{instance='vpnapi:29091'}[1m])
     avg: vpn_avg1
     cpu: vpn_cpu_per
     mem: vpn_mem_per
     netbytes:
-        down: irate(vpn_netin{device='eth0',instance='vpnprometheus:29091'}[1m])
-        upload: irate(vpn_netout{device='eth0',instance='vpnprometheus:29091'}[1m])
+        down: irate(vpn_netin{device='eth0',instance='vpnapi:29091'}[1m])
+        upload: irate(vpn_netout{device='eth0',instance='vpnapi:29091'}[1m])
     query: http://vpnprometheus:9090/api/v1/query
     queryrange: http://vpnprometheus:9090/api/v1/query_range
     sess: vpn_sess
