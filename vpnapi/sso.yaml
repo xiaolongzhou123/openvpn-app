@@ -1,48 +1,61 @@
-Port: 29091
-Debug: true
-Jwt_Exp: 60    #,签发超时时间，分为单位
-Jwt_Ref: 43200  #,签发超时时间，分为单位
-Jwt_Secret: "this1is2secret"
-Jwt_Diff: 604800 #60*60*24*7,7天内用户有访问。refresh_token就会刷新，保证用户token可用
-
-Admin:
-   Names: ["admin"]
-
-Pms:
-   Enable: false
-   Url: "http://localhost:8081/user/name/%s/point/bool/%s"
-
-NetsArr: ["eth0"]
-
-Mysql:
-   Addr: "root:123456@tcp(vpnmysql:3306)/vpn?charset=utf8&&loc=Asia%2FShanghai"
-   Idle: 10,
-   Max: 20
-
-Promethues:
-  Timeout: "5s"  #向promethues发送请求，5s超时
-  AllOut: "irate(flow_in_total{instance='vpnapi:29091'}[1m])"
-  AllIn: "irate(flow_out_total{instance='vpnapi:29091'}[1m])"
-  QueryRange: "http://prometheus:9090/api/v1/query_range"
-  Query: "http://vpnprometheus:9090/api/v1/query"
-  Cpu: "vpn_cpu_per"
-  Mem: "vpn_mem_per"
-  Users: "vpn_users"
-  Sess: "vpn_sess"
-  Avg: "vpn_avg1"
-  NetBytes:
-      Upload: "irate(vpn_netout{device='eth0',instance='vpnapi:29091'}[1m])"
-      Down: "irate(vpn_netin{device='eth0',instance='vpnapi:29091'}[1m])"
-
-AES:
-  KEY: "0123456789123456"
-
-Ldap:
-  DefaultPass: "Xxxxx.ai@123"
-  Host: vpnopenldap:389
-  BaseDN: dc=example,dc=org
-  BindDN: cn=admin,dc=example,dc=org
-  BinPass: admin
-  LdapAttr: [ "myId","cn","sn","myLeader","myGoogle","myDep","myContactReg","myCompanyGroup","myPostion","myReg","myPhone","myTel","myEmail","myName"]  #ldap中有多个字段，只返回这几个字段回来，字段添加越多，返回越多
-  UserDN:
-    signup: ou=tech
+admin:
+    enable: true
+    names:
+        - admin
+aes:
+    key: "0123456789123456"
+author: "zhouxiaolong 11688459@qq.com"
+debug: true
+jwt_diff: 604800
+jwt_exp: 60
+jwt_ref: 43200
+jwt_secret: this1is2secret
+ldap:
+    basedn: dc=example,dc=org
+    binddn: cn=admin,dc=example,dc=org
+    bindpass: admin
+    defaultpass: Xxxxx.ai@123
+    host: vpnopenldap:389
+    ldapattr:
+        - myId
+        - cn
+        - sn
+        - myLeader
+        - myGoogle
+        - myDep
+        - myContactReg
+        - myCompanyGroup
+        - myPostion
+        - myReg
+        - myPhone
+        - myTel
+        - myEmail
+        - myName
+    userdn:
+        signup: ou=tech
+license: apache
+mysql:
+    addr: root:123456@tcp(vpnmysql:3306)/vpn?charset=utf8&&loc=Asia%2FShanghai
+    idle: 10
+    max: 20
+netsarr:
+    - eth0
+pms:
+    enable: false
+    url: http://localhost:8081/user/name/%s/point/bool/%s
+port: 29091
+promethues:
+    allin: irate(flow_out_total{instance='vpnprometheus:29091'}[1m])
+    allout: irate(flow_in_total{instance='vpnprometheus:29091'}[1m])
+    avg: vpn_avg1
+    cpu: vpn_cpu_per
+    mem: vpn_mem_per
+    netbytes:
+        down: irate(vpn_netin{device='eth0',instance='vpnprometheus:29091'}[1m])
+        upload: irate(vpn_netout{device='eth0',instance='vpnprometheus:29091'}[1m])
+    query: http://vpnprometheus:9090/api/v1/query
+    queryrange: http://vpnprometheus:9090/api/v1/query_range
+    sess: vpn_sess
+    timeout: 5s
+    users: vpn_users
+remote: www.zhouxiaolong.top 20000
