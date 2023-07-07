@@ -4,7 +4,7 @@ admin:
         - admin
 aes:
     key: "0123456789123456"
-author: zhouxiaolong 11688459@qq.com
+author: "zhouxiaolong 11688459@qq.com"
 debug: true
 jwt_diff: 604800
 jwt_exp: 60
@@ -57,4 +57,3 @@ promethues:
     queryrange: http://vpnprometheus:9090/api/v1/query_range
     timeout: 5s
     users: vpn_users
-remote: www.zhouxiaolong.top 20005

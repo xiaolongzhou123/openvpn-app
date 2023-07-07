@@ -31,3 +31,17 @@ CREATE TABLE `qos` (
       PRIMARY KEY (`id`),
       UNIQUE KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `client`;
+CREATE TABLE `client` (
+      `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长id',
+      `domain` varchar(30) COLLATE utf8_bin NOT NULL,
+      `port` int(11) NOT NULL COMMENT '端口',
+      PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `client` (`id`, `domain`, `port`) VALUES
+(1,     'www.zhouxiaolong.top', 20005)
+ON DUPLICATE KEY UPDATE `id` = VALUES(`id`), `domain` = VALUES(`domain`), `port` = VALUES(`port`);
