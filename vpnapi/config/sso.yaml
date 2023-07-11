@@ -50,6 +50,7 @@ promethues:
     avg: vpn_avg1
     cpu: vpn_cpu_per
     mem: vpn_mem_per
+    sess: vpn_sess
     netbytes:
         down: irate(vpn_netin{device='eth0',instance='vpnapi:29091'}[1m])
         upload: irate(vpn_netout{device='eth0',instance='vpnapi:29091'}[1m])
