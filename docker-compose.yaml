@@ -2,7 +2,7 @@ version: '2'
 services:
   openvpn:
     container_name: openvpn
-    image: zhouxiaolong1985/openvpn
+    image: registry.cn-hangzhou.aliyuncs.com/metahubs/yskj:openvpn
     volumes:
       - ./run:/etc/openvpn
     environment:
@@ -21,7 +21,7 @@ services:
       - "20005:20005"
   vpnapi:
     container_name: vpnapi
-    image: zhouxiaolong1985/vpnapi
+    image: registry.cn-hangzhou.aliyuncs.com/metahubs/yskj:vpnapi
     volumes:
       - /:/rootfs:ro
       - ./vpnapi/config:/usr/bin/config
@@ -51,7 +51,7 @@ services:
     ports:
       - 9998:80
   vpnmysql:
-    image: mysql:5.7
+    image: registry.cn-hangzhou.aliyuncs.com/metahubs/yskj:mysql5.7
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/my.cnf:/etc/mysql/my.cnf
@@ -64,7 +64,7 @@ services:
       TZ: Asia/Shanghai
       secure_file_priv:
   vpnopenldap:
-    image: zhouxiaolong1985/openldap
+    image: registry.cn-hangzhou.aliyuncs.com/metahubs/yskj:openldap
     container_name: vpnopenldap
     environment:
       LDAP_LOG_LEVEL: "256"
@@ -104,7 +104,7 @@ services:
     hostname: "ldap-server"
     restart: always
   vpnprometheus:
-    image: quay.io/prometheus/prometheus:latest
+    image: registry.cn-hangzhou.aliyuncs.com/metahubs/yskj:prometheus
     volumes:
      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command: "--web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
